@@ -1,3 +1,28 @@
-import React from "react"
+import React from 'react';
 
-export default () => <div>Hello world!</div>
+import { graphql, useStaticQuery } from 'gatsby';
+
+import Layout from '../components/Layout';
+
+import styles from './index.module.css';
+
+export default function IndexPage() {
+  const data = useStaticQuery(graphql`
+  {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`);
+
+  return (
+    <Layout>
+      <div id={styles.hero}>
+        <h1>{data.site.siteMetadata.title}</h1>
+      </div>
+    </Layout>
+  );
+}
+
